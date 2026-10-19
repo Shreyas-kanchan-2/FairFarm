@@ -1,0 +1,26 @@
+node_modules/
+dist/
+build/
+__pycache__/
+*.pyc
+.env
+.env.local
+*.log
+.vite/
+.pytest_cache/
+coverage/
+htmlcov/
+.mypy_cache/
+# Secrets
+.env
+.env.local
+.env.*.local
+
+# Node.js
+node_modules/
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
