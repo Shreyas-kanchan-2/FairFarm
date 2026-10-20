@@ -1,4 +1,4 @@
-# FairFarm 🌱
+# FairFarm 
 
 > Direct Market Access Platform for Marginal Farmers
 
@@ -6,7 +6,7 @@ FairFarm removes predatory middlemen by connecting smallholder growers directly 
 
 ---
 
-## 🚀 Features
+##  Features
 
 - **NetProfit Engine**: Calculates and ranks real net earnings after factoring in transport, transit damage, and handling costs, protecting farmers from deceptive nominal pricing.
 - **Shared Transport Pooling**: Aggregates nearby farmer shipments headed in similar directions to drastically cut logistics expenses.
@@ -15,7 +15,7 @@ FairFarm removes predatory middlemen by connecting smallholder growers directly 
 
 ---
 
-## 🏗️ Project Architecture
+## Project Architecture
 
 ```
 FairFarm/
@@ -28,7 +28,7 @@ FairFarm/
 
 ---
 
-## 🛠️ Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -63,6 +63,6 @@ Copy `.env.example` to `.env` in both `frontend` and `backend` (or project root 
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
