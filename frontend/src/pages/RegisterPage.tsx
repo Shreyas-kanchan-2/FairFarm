@@ -36,7 +36,7 @@ export const RegisterPage: React.FC = () => {
         businessName,
         location,
       });
-      navigate(role === 'farmer' ? '/farmer/dashboard' : '/marketplace');
+      navigate(role === 'farmer' ? '/farmer/dashboard' : '/buyer/dashboard');
     } catch (err: any) {
       setErrorMsg(err.message || 'Registration failed. Please try again.');
     } finally {

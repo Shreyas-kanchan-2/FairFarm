@@ -10,7 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from supabase import acreate_client, AsyncClient
 
 from app.config import settings
-from app.routers import auth, offers, orders, produce, transport, voice
+from app.routers import auth, offers, orders, produce, transport, voice, prices
 
 
 @asynccontextmanager
@@ -55,6 +55,7 @@ app.include_router(offers.router, prefix="/api/offers", tags=["Offers & NetProfi
 app.include_router(orders.router, prefix="/api/orders", tags=["Orders"])
 app.include_router(transport.router, prefix="/api/transport", tags=["Shared Transport"])
 app.include_router(voice.router, prefix="/api/voice", tags=["Voice & TTS"])
+app.include_router(prices.router, prefix="/api/prices", tags=["Agricultural Market Prices & Predictions"])
 
 
 @app.get(

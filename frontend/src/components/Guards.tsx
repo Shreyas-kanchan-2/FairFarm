@@ -26,8 +26,8 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ allowedRoles }) 
   }
 
   if (allowedRoles && !allowedRoles.includes(user.role)) {
-    // If farmer visits buyer-only page or vice versa, redirect to their home
-    return <Navigate to={user.role === 'farmer' ? '/farmer/dashboard' : '/marketplace'} replace />;
+    // If farmer visits buyer-only page or vice versa, redirect to their home dashboard
+    return <Navigate to={user.role === 'farmer' ? '/farmer/dashboard' : '/buyer/dashboard'} replace />;
   }
 
   return <Outlet />;

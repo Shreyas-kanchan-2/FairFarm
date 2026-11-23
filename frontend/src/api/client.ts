@@ -768,3 +768,61 @@ export async function speakVoiceAI(text: string, lang: 'en' | 'hi' | 'kn' = 'en'
     window.speechSynthesis.speak(utterance);
   }
 }
+
+// ============================================================================
+// AGRICULTURAL MARKET PRICES & FORECAST API
+// ============================================================================
+
+import {
+  MANDI_PRICES_DATA,
+  PRICE_FORECASTS_DATA,
+  getCommodityForecast,
+  generateMarketAdvisorResponse,
+} from './priceData';
+
+export const pricesApi = {
+  getMandiPrices: async (params?: { commodity?: string; state?: string; search?: string }) => {
+    try {
+      const res = await api.get('/api/prices/current', { params });
+      return res.data;
+    } catch {
+      let data = [...MANDI_PRICES_DATA];
+      if (params?.commodity && params.commodity !== 'all') {
+        data = data.filter((m) => m.commodity.toLowerCase() === params.commodity!.toLowerCase());
+      }
+      if (params?.state && params.state !== 'all') {
+        data = data.filter((m) => m.state.toLowerCase() === params.state!.toLowerCase());
+      }
+      if (params?.search) {
+        const q = params.search.toLowerCase();
+        data = data.filter(
+          (m) =>
+            m.commodity.toLowerCase().includes(q) ||
+            m.market_name.toLowerCase().includes(q) ||
+            m.variety.toLowerCase().includes(q) ||
+            m.state.toLowerCase().includes(q)
+        );
+      }
+      return data;
+    }
+  },
+
+  getForecast: async (commodity: string) => {
+    try {
+      const res = await api.get(`/api/prices/forecast?commodity=${encodeURIComponent(commodity)}`);
+      return res.data;
+    } catch {
+      return getCommodityForecast(commodity);
+    }
+  },
+
+  askChatbot: async (query: string, context?: { commodity?: string; mandi?: string; role?: string }) => {
+    try {
+      const res = await api.post('/api/prices/chat', { query, context });
+      return res.data.response;
+    } catch {
+      return generateMarketAdvisorResponse(query, context);
+    }
+  },
+};
+

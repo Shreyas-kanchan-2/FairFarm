@@ -126,3 +126,55 @@ export interface TransportMatch {
   dest_distance_km: number;
   match_score: number;
 }
+
+export interface MandiPrice {
+  id: string;
+  commodity: string;
+  variety: string;
+  category: ProduceCategory;
+  state: string;
+  district: string;
+  market_name: string;
+  min_price: number;
+  max_price: number;
+  modal_price: number;
+  unit: string;
+  daily_change_percent: number;
+  arrivals_quintal: number;
+  arrival_date: string;
+  trend: 'up' | 'down' | 'stable';
+}
+
+export interface PriceForecastPoint {
+  day_offset: number;
+  date_label: string;
+  predicted_price: number;
+  confidence_low: number;
+  confidence_high: number;
+}
+
+export interface PriceForecast {
+  commodity: string;
+  variety: string;
+  region: string;
+  current_price: number;
+  forecast_7d: number;
+  forecast_15d: number;
+  forecast_30d: number;
+  forecast_60d: number;
+  confidence_score: number;
+  peak_window: string;
+  expected_trend: 'bullish' | 'bearish' | 'stable';
+  seasonal_drivers: string[];
+  farmer_advisory: string;
+  buyer_advisory: string;
+  trend_points: PriceForecastPoint[];
+}
+
+export interface PriceChatMessage {
+  id: string;
+  sender: 'user' | 'assistant';
+  text: string;
+  timestamp: string;
+}
+

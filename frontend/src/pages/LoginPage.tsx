@@ -24,7 +24,7 @@ export const LoginPage: React.FC = () => {
     setIsSubmitting(true);
     try {
       await login(email, password);
-      navigate(email.includes('buyer') ? '/marketplace' : '/farmer/dashboard');
+      navigate(email.includes('buyer') ? '/buyer/dashboard' : '/farmer/dashboard');
     } catch (err: any) {
       setErrorMsg(err.message || 'Login failed. Please check your credentials.');
     } finally {
@@ -34,7 +34,7 @@ export const LoginPage: React.FC = () => {
 
   const handleDemoSelect = (role: 'farmer' | 'buyer') => {
     quickLogin(role);
-    navigate(role === 'farmer' ? '/farmer/dashboard' : '/marketplace');
+    navigate(role === 'farmer' ? '/farmer/dashboard' : '/buyer/dashboard');
   };
 
   return (

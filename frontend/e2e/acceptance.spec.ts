@@ -25,15 +25,17 @@ test.describe('Final Acceptance Test Lifecycle', () => {
     await page.waitForURL('**/farmer/listings');
     await expect(page.getByText('Golden Shimla Apples')).toBeVisible();
 
-    // 5. Switch to Buyer role
+    // 5. Switch to Buyer role via evaluation switcher
+    await page.goto('/');
+    await page.getByRole('button', { name: /Buyer: Sandeep Khurana/i }).click();
     await page.goto('/marketplace');
-    await page.getByRole('button', { name: 'Buyer' }).click();
 
     // Buyer sees marketplace
     await expect(page.getByText('Fresh Harvest Marketplace')).toBeVisible();
 
     // 6. Navigate to listing offers as Farmer to inspect NetProfit Match
-    await page.getByRole('button', { name: 'Farmer' }).click();
+    await page.goto('/');
+    await page.getByRole('button', { name: /Farmer: Rameshwar Patil/i }).click();
     await page.goto('/farmer/listings');
     // Click compare offers on first item
     const compareBtn = page.getByRole('link', { name: /Compare Offers/i }).first();
