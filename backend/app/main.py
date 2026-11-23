@@ -18,7 +18,15 @@ async def lifespan(app: FastAPI):
     """Application lifespan manager to initialize async Supabase client."""
     # Use service role key for backend operations if provided, otherwise fallback to anon key
     key = settings.SUPABASE_SERVICE_ROLE_KEY or settings.SUPABASE_ANON_KEY
-    app.state.supabase = await acreate_client(settings.SUPABASE_URL, key)
+    if key and key not in ("your-anon-key-here", "your-service-role-key-here", ""):
+        try:
+            app.state.supabase = await acreate_client(settings.SUPABASE_URL, key)
+        except Exception as exc:
+            print(f"Notice: Supabase client initialization warning: {exc}")
+            app.state.supabase = None
+    else:
+        print("Notice: No live Supabase credentials configured. Running in mock/local mode.")
+        app.state.supabase = None
     yield
 
 
