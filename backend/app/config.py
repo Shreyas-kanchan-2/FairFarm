@@ -39,10 +39,17 @@ class Settings(BaseSettings):
         description="Comma-separated list of allowed CORS origins",
     )
 
+    # e-NAM / OGD Mandi Price API
+    DATA_GOV_API_KEY: Optional[str] = Field(
+	default=None,
+  	description="API key from data.gov.in for daily mandi commodity prices",
+    )
+    
+	
     model_config = SettingsConfigDict(
-        env_file=(".env", "../.env"),
-        env_file_encoding="utf-8",
-        extra="ignore",
+   	 env_file=(".env", "../.env", "../../.env"),
+  	 env_file_encoding="utf-8",
+    	 extra="ignore",
     )
 
     @property
@@ -58,3 +65,6 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+MANDI_RESOURCE_ID = "9ef84268-d588-465a-a308-a864a43d0070"
+MANDI_API_URL = f"https://api.data.gov.in/resource/{MANDI_RESOURCE_ID}"

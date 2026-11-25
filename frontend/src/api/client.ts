@@ -816,9 +816,16 @@ export const pricesApi = {
     }
   },
 
-  askChatbot: async (query: string, context?: { commodity?: string; mandi?: string; role?: string }) => {
+  askChatbot: async (
+    query: string,
+    context?: { commodity?: string; mandi?: string; role?: string; mode?: string }
+  ) => {
     try {
-      const res = await api.post('/api/prices/chat', { query, context });
+      const res = await api.post('/api/prices/chat', {
+        query,
+        mode: context?.mode || 'current',
+        context,
+      });
       return res.data.response;
     } catch {
       return generateMarketAdvisorResponse(query, context);

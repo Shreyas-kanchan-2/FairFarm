@@ -5,6 +5,7 @@ import { LanguageProvider } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { ProtectedRoute } from './components/Guards';
+import { SVSChatbot } from './components/SVSChatbot';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -37,6 +38,9 @@ function AppLayout() {
         <Outlet />
       </main>
       <Footer />
+      {/* SVS – Smart Value System: Farmer-only Floating AI Price Assistant
+           Renders nothing for buyers and unauthenticated users (self-guarded). */}
+      <SVSChatbot />
     </div>
   );
 }
